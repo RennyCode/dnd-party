@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+
+
+{% block body  %}
+
+<div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 font-italic">Welcome to the Archive  of Post Collection:</h1>
+      <p class="lead my-3">Here you will find the full collection of users posts.</p>
+    </div>
+</div>
+
+
+  <div class="posts">
+   
+    {% for post in posts %} 
+        <div class="row mb-2">
+          <div class="col-sm">
+            <div class="card flex-md-row mb-4 box-shadow h-md-250" id="latestPost">
+              <h4>{{loop.index}})  {{post[2]}} - </h4>
+              <p class="postP"> {{(post[3])[0:45]}}... By {{post[1]}} </P>
+              <a class='toPost' href="/postPage/{{post[0]}}">Continue reading</a>  
+            </div>
+          </div>
+        </div>
+        
+    {% endfor %}
+    
+  </div>
+
+{% endblock %}

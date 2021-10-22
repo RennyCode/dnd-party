@@ -1,0 +1,77 @@
+{% extends 'layout.html' %}
+
+
+
+{% block body  %}
+<form method='POST' action="/getInfo1" >
+    <div class="signUpBox">
+        <br> <br>
+        <h2 class="center-title">Please fill out the form to sign up:</h2>
+        <br>
+
+        <div class="fillBox">
+            <label for="username">User Name</label>
+            <div class="input-group">
+            <input type="text" class="form-control" id="username"  name="username" placeholder="User Name"  required>
+                <div class="invalid-feedback" style="width: 100%;">
+                    Your user name is required.
+                </div>
+            </div>
+        </div>
+        <ul class=flashes style="text-align: center;">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              <ul class=flashes>
+              {% for message in messages %}
+                <p>{{ message }}</p>
+              {% endfor %}
+              </ul>
+            {% endif %}
+        {% endwith %}
+        </ul>
+        <div class="fillBox">
+            <label for="email">Email </label>
+            <input type="email" class="form-control" id="email" placeholder="you@example.com" name="email" required>
+            <div class="invalid-feedback">
+            Please enter a valid email address for shipping updates.
+            </div>
+        </div>
+   
+              
+        <div class="fillBox">
+                    <label for="password">Password</label>
+            <input type="password" id="type" class="form-control" value="FakePSW" name="password1" minlength="8" required> <br> 
+                <div class="invalid-feedback">
+                    Please select a valid Option.
+                </div>
+        </div>
+
+        <div class="fillBox">
+            <label for="type">Type</label>
+            <select class="custom-select d-block w-100" id="type" name="userType" required>
+                <option value="">Choose...</option>
+                <option>Player</option>
+                <option>DM</option>
+            </select>
+                <div class="invalid-feedback">
+                    Please select a valid Option.
+                </div>
+        </div>
+
+        <div class="fillBox">
+            <label for="descrip">Description</label>
+            <textarea class="form-control" id="description-box" maxlength="200"  placeholder="Description" name="descrip"  required ></textarea>
+            <div class="invalid-feedback">
+                Your Sub-Class is required.
+            </div>
+
+        
+        <br><br>
+        
+
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Continue</button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

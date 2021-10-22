@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+        
+{% block body  %}
+ <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 font-italic">Welcome Travaler, to our D&D Party</h1>
+      <p class="lead my-3">This Web App allows the DM and the party to follow your campaign progress with the power of online sharing.</p>
+      
+    </div>
+  </div>
+
+
+
+  <h3>Your Current Party includes:</h3>
+  <div class="party">
+    <div class="homeGrid">
+      {% for y in users %}
+          
+            <div class="col-md-6" id="singleGrid">
+
+              <div class="card flex-md-row mb-4 box-shadow h-md-250" id="member">
+                <div class="card-body d-flex flex-column align-items-start" >
+                  <h3 class="mb-0">
+                    <a id="redH" href="#">{{y[3]}}</a>
+                  </h3>
+                  <br>
+                  <p class="card-text mb-auto">{{(y[9])[0:45]}} ...</p>
+                  
+                </div>
+                {%if y[10] %}
+                  <img class="" id="members-img" src="{{url_for('static', filename='/img/'+y[10])}}" alt="the DM's image">
+                {% else %}
+                  <img class="" id="members-img" src="{{url_for('static', filename='/img/unknown.jpg')}}" alt="unknown image">
+                {% endif %}
+              </div>
+
+            </div>
+        
+      {% endfor %}
+    </div>
+  <div class="3posts">
+    <h3>What's New ?</h3>
+      <br>
+
+    {% for x in range(0,3) %}
+    <div class="row mb-2">
+      <div class="col-sm">
+        <div class="card flex-md-row mb-4 box-shadow h-md-250" id="latestPost">
+          <h4>{{posts[len-x][2]}} - </h4>
+          <p class="postP">  {{(posts[len-x][3][0:45])}}...   ,Posted By {{posts[len-x][1]}}</P>
+          <a class='toPost' href="#">Continue reading</a>  
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    
+
+  </div>
+
+
+</div>
+{% endblock %}

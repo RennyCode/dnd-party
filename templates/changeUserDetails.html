@@ -1,0 +1,132 @@
+{% extends 'layout.html' %}
+
+
+{% block body  %}
+
+<form method='POST' action="/changeUserDetails" >
+    <div class="signUpBox">
+        <br> <br>
+        <h2 class="center-title">Change User Information:</h2>
+        <br>
+
+        <div class="fillBox">
+            <label for="username">User Name</label>
+            <div class="input-group">
+            <input type="text" class="form-control" id="username"  name="username" value={{session.loggedUser[1]}}  required>
+                <div class="invalid-feedback" style="width: 100%;">
+                    Your user name is required.
+                </div>
+            </div>
+        </div>
+        
+        <ul class=flashes style="text-align: center;">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              <ul class=flashes>
+              {% for message in messages %}
+                <p>{{ message }}</p>
+              {% endfor %}
+              </ul>
+            {% endif %}
+        {% endwith %}
+        </ul>
+        <div class="fillBox">
+            <label for="email">Email </label>
+            <input type="email" class="form-control" id="email" value={{session.loggedUser[8]}} name="email" required>
+            <div class="invalid-feedback">
+            Please enter a valid email address for shipping updates.
+            </div>
+        </div>
+   
+              
+        <div class="fillBox">
+                    <label for="password">Password</label>
+            <input type="password" id="type" class="form-control" value={{session.loggedUser[11]}} name="password1" minlength="8" required> <br> 
+                <div class="invalid-feedback">
+                    Please select a valid Option.
+                </div>
+        </div>
+
+        <div class="fillBox">
+            <label for="type">Type</label>
+            <select class="custom-select d-block w-100" id="type" name="userType" required disabled> 
+                <option value="">{{session.loggedUser[2]}}</option>
+                
+            </select>
+                <div class="invalid-feedback">
+                    Please select a valid Option.
+                </div>
+        </div>
+
+        {{session.dOp}}
+        {% if session.type %}
+        <div class="fillBox">
+            <label for="Character Name">Character Name</label>
+            
+            <input type="text" class="form-control"  value={{session.loggedUser[3]}} name="charName" value="" required>
+            <div class="invalid-feedback">
+                Valid Character Name is required.
+            </div>
+        </div>
+
+        <div class="fillBox">
+            <label for="charlvl">Level</label>
+           
+            <input type="number" class="form-control" min="0" max="20" value={{session.loggedUser[4]}} name="lvl" value="" required>
+            <div class="invalid-feedback">
+                A valid Level value is required
+            </div>
+        </div>
+    
+
+
+        <div class="fillBox">
+            <label for="Class">Class</label>
+            <div class="input-group">
+            <div class="input-group-prepend">
+            </div>
+            <input type="text" class="form-control" value={{session.loggedUser[5]}} name="class" required>
+            <div class="invalid-feedback" style="width: 100%;">
+                Your Class is required.
+            </div>
+            </div>
+        </div>
+    
+
+        <div class="fillBox">
+            <label for="Sub-Class">Sub-Class</label>
+            <input type="text" class="form-control"  value={{session.loggedUser[6]}} name="subClass" required>
+            <div class="invalid-feedback">
+                Your Sub-Class is required.
+            </div>
+        </div>
+
+        <div class="fillBox">
+            <label for="HP">HP</label>
+            <input type="number" class="form-control"  min="1" max="1000" value={{session.loggedUser[7]}} name="hp">
+            <div class="invalid-feedback">
+                A valid HP value is required.
+            </div>
+        </div>
+        {% endif %}
+        <div class="fillBox">
+            <label for="descrip">Description</label>
+            <textarea class="form-control" id="description-box" maxlength="200"  value="" name="descrip"  required >{{session.loggedUser[9]}}</textarea>
+            <div class="invalid-feedback">
+                Your Sub-Class is required.
+            </div>
+
+        
+        <br><br>
+        
+
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Continue</button>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+{% endblock %}

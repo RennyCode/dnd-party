@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+
+
+
+{% block body  %}
+
+<div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+    <div class="col-md-6 px-0">
+      <h4 class="display-4 font-italic">Here are the Members of the Party:</h1>
+      <p class="lead my-3">Your bound together by Fate, Mission or Personal Goal - you are a D&D Party</p>
+      
+    </div>
+  </div>
+
+
+<div class="allParty">
+
+    {% for dm in dms %}
+      <div class="card flex mb-4 box-shadow h-md-250" id="PMbox">   
+            
+            <div id="PMgridBox"> 
+              <div class="PMinfoText">
+                  <h3><a id="redH" href="#">{{dm[3]}}</a></h3>
+                  <br> <br>
+
+                  <div class="detail-grid">
+                      <div>User Name = {{dm[1]}}</div>
+                      <div>User Type = {{dm[2]}}</div>
+                      <div>Character Name = {{dm[2]}}</div>
+                  </div>
+                  <br>
+                  <div class="descriptionText">{{(dm[9])[0:200]}}...</div>   
+              </div>
+                  <div class="imgDiv">
+                      {%if dm[10] %}
+                        <img class="partyImg" id="PMimg" src="{{url_for('static', filename='/img/'+dm[10])}}" alt="the DM's image">
+                      {% else %}
+                        <img class="partyImg" id="PMimg" src="{{url_for('static', filename='/img/unknown.jpg')}}" alt="unknown image">
+                      {% endif %}
+                  </div>
+
+            </div>
+            <br>
+                  
+      </div> 
+      <br>
+    {% endfor %}
+
+    {% for player in players %}
+      <div class="card flex-md-row mb-4 box-shadow h-md-250" id="PMbox">   
+          
+          <div id="PMgridBox"> 
+
+              <div class="PMinfoText">
+                <h3><a id="redH" href="#">{{player[3]}}</a></h3>
+                <br> <br>
+                  <div class="detail-grid">
+                      <div>Character Name = {{player[1]}}</div>
+                      <div>Player's Name = {{player[3]}}</div>
+                      <div>Level = {{player[4]}}</div>
+                      <div>Class = {{player[5]}}</div>
+                      <div>Sub Class = {{player[6]}}</div>
+                      <div>HP = {{player[7]}}</div>
+                  </div>    
+                  <br>
+                  <div class="descriptionText">{{(player[9])[0:200]}}...</div>
+              </div>
+              
+
+              <div class="imgDiv">
+                {%if player[10] %}
+                  <img class="partyImg" id="PMimg" src="{{url_for('static', filename='/img/'+player[10])}}" alt="the DM's image">
+                {% else %}
+                  <img class="partyImg" id="PMimg" src="{{url_for('static', filename='/img/unknown.jpg')}}" alt="unknown image">
+                {% endif %}
+              </div>      
+
+          </div>
+
+          
+      </div> 
+      <br>
+
+    {% endfor %}
+      
+
+</div>
+
+
+
+{% endblock %}

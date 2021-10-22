@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+
+
+{% block body  %}
+<form method='POST' action="/uploadPost" >
+    <div class="signUpBox">
+        <br> <br>
+        <h2 class="center-title">Create Your Own Article For Your Party:</h2>
+        <br>
+
+        <div class="fillBox">
+            <label for="username">Subject:</label>
+            <div class="input-group">
+            <input type="text" class="form-control" id="username"  name="subject" placeholder="Subject"  required>
+                <div class="invalid-feedback" style="width: 100%;">
+                    A subject is required.
+                </div>
+            </div>
+        </div>
+
+        <div class="">
+            <label for="descrip">Content:</label>
+            <textarea class="form-control" id="article-box"   placeholder="Content" name="content"  required ></textarea>
+            <div class="invalid-feedback">
+                Your article content is required.
+            </div>
+        </div>
+        
+        <br><br>
+        
+        <div class="fillBox">
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Continue</button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}
